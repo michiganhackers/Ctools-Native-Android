@@ -14,7 +14,7 @@ MVP Features
 Details
 -----
 - Push notifications when given new assignments, assuming the authentication cookie allows us to check for updates in the background/when app is closed.
-- Using Shibboleth authentication through UMich (see @davidquesada Github for iOS cookie example)
+- Using Shibboleth authentication through UMich (see @davidquesada Github for iOS [cookie example](https://github.com/davidquesada/BluePrinter/blob/863ecfe42adef21063cde584fd2ed245a9461567/BluePrinterCore/BluePrinterCore/Model/Network/MPrintCosignManager.m))
 - Announcements, Resources, Gradebook are all directly and reliably accessible through the CTools direct API
 - Calendar* and Videos can be gotten from scraping the websites, 'gcalid' can be gotten through API but need to access the actual calendar through Google APIs
 - Assignments only available if no assignments are posted, otherwise throws a 403 (Forbidden) error.
