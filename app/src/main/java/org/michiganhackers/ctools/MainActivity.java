@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class MainActivity extends ActionBarActivity {
 
@@ -12,6 +15,14 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // TESTING
+        try {
+            URL url = new URL("http://httpbin.org/get");
+            new HttpGETTask().execute(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
 
