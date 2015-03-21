@@ -29,6 +29,10 @@ public class HttpGETTask extends AsyncTask <URL, Integer, List<JSONObject>> {
         for (URL url : params) {
             try {
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//                connection.setRequestProperty("Cookie, );
+
+                int code = connection.getResponseCode();
+                Log.d(TAG, "Code: "+ code);
 
                 if(isCancelled()) break;
 

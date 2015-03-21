@@ -27,10 +27,12 @@ public class getCookie extends ActionBarActivity {
         if (webview.getUrl() != null) {
             onPageFinished(webview, "https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
         }
+
         Log.d(TAG, webview.getUrl());
+
         while (webview.getUrl() != null && webview.getUrl().contains("ctools.umich.edu/portal")) {
-            finish();
         }
+        //finish();
     }
 
 

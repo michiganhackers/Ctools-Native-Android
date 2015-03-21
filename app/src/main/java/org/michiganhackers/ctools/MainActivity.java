@@ -5,6 +5,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,15 +19,6 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, getCookie.class);
         startActivity(intent);
-
-
-        // TESTING
-        try {
-            URL url = new URL("http://httpbin.org/get");
-            new HttpGETTask().execute(url);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -50,5 +42,15 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // TESTING
+    public void testGet(View v) {
+        try {
+            URL url = new URL("https://ctools.umich.edu/direct/gradebook/site/de2b5527-9458-49eb-b5bc-6c12dc0bf731.json");
+            new HttpGETTask().execute(url);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 }
