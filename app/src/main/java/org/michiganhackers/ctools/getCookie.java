@@ -21,20 +21,24 @@ public class getCookie extends ActionBarActivity {
         setContentView(R.layout.activity_get_cookie);
 
         WebView webview = (WebView)findViewById(R.id.webview);
-
-        webview.loadUrl("https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
-        onPageFinished(webview, "https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
-        finish();
+        if (webview.getUrl() != null) {
+            webview.loadUrl("https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
+            onPageFinished(webview, "https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
+        }
+        while (webview.getUrl() != null && webview.getUrl().contains("ctools.umich.edu")) {
+            finish();
+        }
     }
 
 
     public void onPageFinished(WebView view, String url){
         String cookies = CookieManager.getInstance().getCookie(url);
-
-        Log.d(TAG,"All the cookies in a string: " + cookies);
-        String[] cookiesList = cookies.split("cosign=");
-        String loginCookie = cookiesList[0];
-        CookieManager.getInstance().setCookie(url, loginCookie);
+        if (cookies != null) {
+            Log.d(TAG, "All the cookies in a string: " + cookies);
+            String[] cookiesList = cookies.split("cosign=");
+            String loginCookie = cookiesList[0];
+            CookieManager.getInstance().setCookie(url, loginCookie);
+        }
     }
 
     @Override
