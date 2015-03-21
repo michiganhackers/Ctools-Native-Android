@@ -21,7 +21,7 @@ Details
 
 API endpoints & Usage
 -----
-`https://ctools.umich.edu/site.{JSON/XML}`
+`https://ctools.umich.edu/direct/site.{JSON/XML}`
 - for complete list of available classes, their ids, etc.
 
 `https://ctools.umich.edu/direct/{ENDPOINT}/site/{SITE ID}.{JSON/XML}`
