@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import java.net.CookieHandler;
 import java.net.CookieStore;
@@ -21,11 +22,13 @@ public class getCookie extends ActionBarActivity {
         setContentView(R.layout.activity_get_cookie);
 
         WebView webview = (WebView)findViewById(R.id.webview);
+        webview.setWebViewClient(new Callback());
+        webview.loadUrl("https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
         if (webview.getUrl() != null) {
-            webview.loadUrl("https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
             onPageFinished(webview, "https://weblogin.umich.edu/?cosign-ctools&https://ctools.umich.edu/sakai-login-tool/container");
         }
-        while (webview.getUrl() != null && webview.getUrl().contains("ctools.umich.edu")) {
+        Log.d(TAG, webview.getUrl());
+        while (webview.getUrl() != null && webview.getUrl().contains("ctools.umich.edu/portal")) {
             finish();
         }
     }
@@ -61,5 +64,14 @@ public class getCookie extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class Callback extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            return true;
+        }
+
     }
 }
