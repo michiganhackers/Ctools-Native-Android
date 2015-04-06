@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -18,16 +19,16 @@ import java.net.CookieStore;
 
 public class getCookie extends ActionBarActivity {
     public static final String TAG = "getCookie";
+    WebView webview = (WebView)findViewById(R.id.webview);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_cookie);
 
-        WebView webview = (WebView)findViewById(R.id.webview);
         Callback callback = new Callback();
         webview.setWebViewClient(callback);
-        //webview.getSettings().setJavaScriptEnabled(true);
-        Bitmap bMap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+        webview.getSettings().setJavaScriptEnabled(true);
+
 
         webview.loadUrl("https://ctools.umich.edu/portal");
         onPageFinished(webview, "https://ctools.umich.edu/portal");
@@ -45,6 +46,29 @@ public class getCookie extends ActionBarActivity {
         }
         */
         Log.d(TAG, "WE MADE IT MAMA");
+    }
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent e) {
+        float x = e.getX();
+        float y = e.getY();
+
+        if (webview.getUrl().contains("ctools.umich.edu/portal")) {
+            String cookies = CookieManager.getInstance().getCookie(webview.getUrl());
+            if (cookies != null) {
+                Log.d(TAG, "All the cookies in the string: " + cookies);
+                String[] cookiesList = cookies.split("cosign=");
+                for (String s : cookiesList) {
+                    CookieManager.getInstance().setCookie(webview.getUrl(), s);
+                    Log.d(TAG, s);
+                }
+            }
+            finish();
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -69,25 +93,12 @@ public class getCookie extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private class Callback extends WebViewClient {
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             return true;
-        }
-
-
-        @Override
-        public void onPageStarted(WebView view, String url, Bitmap favicon) {
-            String cookies = CookieManager.getInstance().getCookie(url);
-            if (cookies != null) {
-                Log.d(TAG, "All the cookies in the string: " + cookies);
-                String[] cookiesList = cookies.split("cosign=");
-                for (String s: cookiesList) {
-                    CookieManager.getInstance().setCookie(url, s);
-                    Log.d(TAG, s);
-                }
-            }
         }
     }
 }
