@@ -17,12 +17,16 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, getCookie.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
 
-
-        // TESTING
+        bool cookieGot = 
+        //start activity for result, bool value if cookie was gotten
+        //if cookie got, go to scrollbar
+        //otherwise go back to homepage
+        //only load json info when certain element is clicked
+        //that's all for now
         try {
-            URL url = new URL("http://httpbin.org/get");
+            URL url = new URL("https://ctools.umich.edu/direct/site.json");
             new HttpGETTask().execute(url);
         } catch (MalformedURLException e) {
             e.printStackTrace();
