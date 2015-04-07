@@ -45,8 +45,8 @@ public class getCookie extends ActionBarActivity {
         container.removeView(webview);
 
         Intent intent = this.getIntent();
-        intent.putExtra("",cookies.contains("cosign-ctools"));
-        this.setResult(RESULT_OK);
+        intent.putExtra("fuckingCookie",cookies.contains("cosign-ctools"));
+        this.setResult(RESULT_OK, intent);
         finish();
     }
 

@@ -5,5 +5,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_get_cookie">getCookie</string>
+    <string name="title_activity_classes">classes</string>
 
 </resources>

@@ -11,15 +11,17 @@ import java.net.URL;
 
 
 public class MainActivity extends ActionBarActivity {
-
+    boolean cookieGot;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this, getCookie.class);
         startActivityForResult(intent, 1);
-
-        bool cookieGot = 
+        Intent classes = new Intent(this, Classes.class);
+        if (cookieGot) {
+            startActivity(classes);
+        }
         //start activity for result, bool value if cookie was gotten
         //if cookie got, go to scrollbar
         //otherwise go back to homepage
@@ -54,5 +56,9 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        cookieGot = data.getBooleanExtra("fuckingCookie", false);
     }
 }

@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.michiganhackers.ctools" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk android:minSdkVersion="7"  android:targetSdkVersion="18" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -21,6 +21,12 @@
         <activity
             android:name=".getCookie"
             android:label="@string/title_activity_get_cookie" >
+        </activity>
+        <activity
+            android:name=".Classes"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="@string/title_activity_classes" >
+
         </activity>
     </application>
 
